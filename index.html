@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConceptCards | 學科卡關知識庫</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🧠 ConceptCards 學科筆記系統</h1>
+        <p>將讀書與作業的卡關點，轉化為高效複習卡片</p>
+
+        <div class="header-controls">
+            <div class="index-filter-bar" role="group" aria-label="考試範圍篩選">
+                <button class="index-scope-btn active" data-scope="all">全部範圍</button>
+                <button class="index-scope-btn" data-scope="midterm">期中範圍</button>
+                <button class="index-scope-btn" data-scope="final">期末範圍</button>
+            </div>
+
+            <div class="search-wrap">
+                <input id="search-input" class="search-input" type="search" placeholder="搜尋概念、單元或關鍵字（按 / 聚焦）" aria-label="搜尋筆記">
+            </div>
+
+            <button id="toggle-all-units" class="toggle-all-btn" type="button">收合全部單元</button>
+        </div>
+    </header>
+
+    <!-- 由 app.js 讀取 flashcards-data.js 自動渲染科目卡片與單元摺疊群組 -->
+    <main id="subjects-grid" class="grid-container"></main>
+
+    <!-- 翻卡測驗視窗 -->
+    <div id="quiz-modal" class="quiz-modal" aria-hidden="true">
+        <div class="quiz-dialog" role="dialog" aria-modal="true" aria-labelledby="quiz-subject-title">
+            <div class="quiz-header">
+                <div>
+                    <span class="quiz-kicker">FLASHCARD PRACTICE</span>
+                    <h2 id="quiz-subject-title">科目名稱</h2>
+                </div>
+                <button id="quiz-close" class="quiz-close-btn" aria-label="關閉測驗">✕</button>
+            </div>
+
+            <div class="quiz-toolbar">
+                <div class="quiz-filters">
+                    <div class="scope-group" role="group" aria-label="測驗範圍">
+                        <button class="scope-btn active" data-scope="midterm">期中 (Midterm)</button>
+                        <button class="scope-btn" data-scope="final">期末 (Final)</button>
+                        <button class="scope-btn" data-scope="all">全部範圍</button>
+                    </div>
+                    <select id="quiz-unit-select" class="unit-select" aria-label="選擇單元">
+                        <option value="all">全部單元</option>
+                    </select>
+                </div>
+                <span id="quiz-progress-text" class="quiz-progress-text">第 1 / 1 題</span>
+            </div>
+
+            <div class="quiz-progress-bar">
+                <div id="quiz-progress-fill" class="quiz-progress-fill"></div>
+            </div>
+
+            <div id="flashcard" class="flashcard">
+                <div id="flashcard-inner" class="flashcard-inner">
+                    <div class="flashcard-face flashcard-front">
+                        <div class="face-top">
+                            <div class="face-badges">
+                                <span id="card-exam-badge" class="exam-badge exam-midterm">期中範圍</span>
+                                <span id="card-unit-badge" class="unit-badge">單元</span>
+                            </div>
+                            <span class="flip-hint">點擊卡片或按空白鍵翻面 ↻</span>
+                        </div>
+                        <h3 id="card-front-title" class="flashcard-title"></h3>
+                        <div class="section hurdle-section">
+                            <h4>🤔 當時卡在哪裡？（盲點題目）</h4>
+                            <p id="card-front-hurdle"></p>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-face flashcard-back">
+                        <div class="face-top">
+                            <span class="answer-badge">💡 觀念解析與突破點</span>
+                            <a id="card-detail-link" class="detail-link" href="#">開啟完整筆記 ↗</a>
+                        </div>
+                        <div class="section breakthrough-section">
+                            <ul id="card-back-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-empty" class="quiz-empty" style="display: none;">
+                <p>目前此範圍尚未建立筆記卡片，新增筆記後即可在此練習！</p>
+            </div>
+
+            <div class="quiz-controls">
+                <button id="quiz-prev" class="ctrl-btn">← 上一題</button>
+                <button id="quiz-flip" class="ctrl-btn ctrl-primary">翻面檢視解析</button>
+                <button id="quiz-next" class="ctrl-btn">下一題 →</button>
+                <button id="quiz-shuffle" class="ctrl-btn" title="隨機洗牌">🔀 洗牌</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="flashcards-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

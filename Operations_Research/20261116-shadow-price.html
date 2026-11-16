@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>影子價格 (Shadow Price) - Operations_Research</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首頁</a> > <span>Operations_Research</span>
+        </div>
+        
+        <h1 class="concept-title">影子價格 (Shadow Price)</h1>
+        
+        <div class="section hurdle-section">
+            <h2>🤔 當時卡在哪裡？（盲點 / 作業問題）</h2>
+            <p>複習線性規劃敏感度分析時，不理解影子價格（Shadow Price）的實務意義與適用限制。</p>
+        </div>
+
+        <div class="section breakthrough-section">
+            <h2>💡 觀念解析與突破點</h2>
+            <ul>
+                <li><strong>核心定義：</strong>影子價格代表在線性規劃中，當某項資源限制式（RHS）<strong>增加 1 單位</strong>時，目標函數（如總利潤）所能增加的幅度。</li>
+                <li><strong>有效區間限制：</strong>影子價格僅在<strong>允許增加／減少量（Allowable Increase / Decrease）</strong>的範圍內有效；一旦資源變動超出此區間，最佳基解結構會改變，影子價格也須重新計算。</li>
+                <li><strong>非緊繃限制式（Slack &gt; 0）：</strong>若某項資源尚有剩餘未被用完，其影子價格必為 0，因為再增加該資源也無法進一步提高總利潤。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

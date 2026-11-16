@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>System Call 與中斷狀態切換機制 - Operating_Systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首頁</a> > <span>Operating_Systems</span>
+        </div>
+        
+        <h1 class="concept-title">System Call 與中斷狀態切換機制 (Dual-Mode Operation)</h1>
+        
+        <div class="section hurdle-section">
+            <h2>🤔 當時卡在哪裡？（盲點 / 作業問題）</h2>
+            <p>不了解 System Call 如何透過 Trap 中斷機制完成 User Mode 與 Kernel Mode 切換。</p>
+        </div>
+
+        <div class="section breakthrough-section">
+            <h2>💡 觀念解析與突破點</h2>
+            <ul>
+                <li><strong>雙重模式保護（Dual-Mode Operation）：</strong>為了保護硬體與核心資料，CPU 分為 User Mode（使用者模式）與 Kernel Mode（核心模式）。當使用者程式需要存取硬體或執行特權指令（如 I/O 操作、建立行程）時，必須透過 System Call 請求作業系統協助。</li>
+                <li><strong>步驟 1 — 呼叫介面與傳遞編號：</strong>應用程式呼叫系統呼叫介面（或透過 API 封裝），將對應的 System Call Number 存入暫存器。</li>
+                <li><strong>步驟 2 — 觸發 Trap 與模式切換：</strong>觸發軟體中斷（Trap / Exception），硬體自動將 Mode Bit 從 1（User Mode）切換為 0（Kernel Mode），並保存當前執行狀態。</li>
+                <li><strong>步驟 3 — 執行核心服務常式：</strong>CPU 依據中斷向量表（Interrupt Vector）跳轉至核心對應的 System Call Handler 執行服務常式。</li>
+                <li><strong>步驟 4 — 恢復狀態並返回：</strong>執行完畢後，恢復原本的暫存器狀態並將 Mode Bit 切回 1，把控制權交還給使用者程式。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

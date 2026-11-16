@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Process 與 Thread 核心差異與資源共享機制 - Operating_Systems</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首頁</a> > <span>Operating_Systems</span>
+        </div>
+        
+        <h1 class="concept-title">Process 與 Thread 核心差異與資源共享機制</h1>
+        
+        <div class="section hurdle-section">
+            <h2>🤔 當時卡在哪裡？（盲點 / 作業問題）</h2>
+            <p>不了解 Process 與 Thread 在資源分配、共享內容與切換成本上的核心差異。</p>
+        </div>
+
+        <div class="section breakthrough-section">
+            <h2>💡 觀念解析與突破點</h2>
+            <ul>
+                <li><strong>資源分配與獨立性：</strong>Process 是作業系統分配資源（如記憶體空間、檔案描述符）的基本單位，各行程擁有獨立的位址空間；Thread 則是 CPU 排程與執行的基本單位，隸屬於某個 Process 之下。</li>
+                <li><strong>共享與獨立內容：</strong>同一個 Process 下的多個 Threads 會共享 Code section、Data section 以及作業系統資源（如開啟的檔案），但每個 Thread 各自擁有獨立的 Program Counter (PC)、Registers 與 Stack。</li>
+                <li><strong>切換成本（Context Switch）：</strong>由於不需切換記憶體位址空間與頁表（Page Table），Thread 之間的 Context Switch 成本遠低於 Process。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

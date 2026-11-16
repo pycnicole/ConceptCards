@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>排容原理與錯排問題 - Discrete_Mathematics</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="card-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首頁</a> > <span>Discrete_Mathematics</span>
+        </div>
+        
+        <h1 class="concept-title">排容原理與錯排問題 (Inclusion-Exclusion &amp; Derangement)</h1>
+        
+        <div class="section hurdle-section">
+            <h2>🤔 當時卡在哪裡？（盲點 / 作業問題）</h2>
+            <p>不了解如何利用排容原理扣除違規排列，以及推導錯排數公式的邏輯。</p>
+        </div>
+
+        <div class="section breakthrough-section">
+            <h2>💡 觀念解析與突破點</h2>
+            <ul>
+                <li><strong>核心概念：</strong>當直接計算滿足所有條件的排列數較困難時，改以「全部可能的方法數」扣除「違反至少一個條件的方法數」，並透過交集加減修正重複扣除的部分。</li>
+                <li><strong>排容原理公式：</strong>設全集為 $U$，集合 $A_i$ 代表違反第 $i$ 個限制條件（性質 $P_i$）的集合，則滿足所有限制條件的方法數為：
+                    $$|\overline{A_1} \cap \overline{A_2} \cap \dots \cap \overline{A_n}| = |U| - \sum |A_i| + \sum |A_i \cap A_j| - \dots + (-1)^n |A_1 \cap \dots \cap A_n|$$
+                </li>
+                <li><strong>經典特例（錯排問題 $D_n$）：</strong>要求 $n$ 個元素全部都不在原本的位置上，透過上述公式推導可得錯排數公式為 $D_n = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!}$。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>生成函數求解帶限制的組合分配問題 - Discrete_Mathematics</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="card-container">
+        <div class="breadcrumb">
+            <a href="../index.html">首頁</a> > <span>Discrete_Mathematics</span>
+        </div>
+        
+        <h1 class="concept-title">生成函數求解帶限制的組合分配問題 (Generating Function)</h1>
+        
+        <div class="section hurdle-section">
+            <h2>🤔 當時卡在哪裡？（盲點 / 作業問題）</h2>
+            <p>不了解如何將組合分配的數量限制轉化為生成函數因子並提取目標係數。</p>
+        </div>
+
+        <div class="section breakthrough-section">
+            <h2>💡 觀念解析與突破點</h2>
+            <ul>
+                <li><strong>核心概念：</strong>將離散的組合問題轉化為多項式（或冪級數）的乘法運算，透過尋找展開式中特定次方項 $x^n$ 的係數來求得方法數。</li>
+                <li><strong>步驟 1 — 設定變數的指數上下限：</strong>根據每個變數 $x_i$ 的數量限制（例如「至少取 $a$ 個」、「至多取 $b$ 個」或「只能取偶數個」），寫出對應的生成函數因子，如 $(x^a + x^{a+1} + \dots + x^b)$ 或 $(1 + x^2 + x^4 + \dots)$。</li>
+                <li><strong>步驟 2 — 將各因子相乘與化簡：</strong>把所有變數的多項式相乘，並利用等比級數公式（如 $\frac{1}{1-x} = \sum_{k=0}^{\infty} x^k$）化簡為封閉形式（Closed Form）。</li>
+                <li><strong>步驟 3 — 展開並提取係數：</strong>利用二項式定理 $\binom{-n}{k} = (-1)^k \binom{n+k-1}{k}$ 展開化簡後的式子，找出目標總數 $x^n$ 的係數即為答案。</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
